@@ -2,6 +2,12 @@ import React, {useState, useEffect} from "react"
 import BookingList from "../components/BookingList"
 import BookingForm from "../components/BookingForm"
 import {getBookings, putBooking} from "../services/BookingServices"
+import styled from "styled-components"
+
+const BookingFormContainer = styled.div`
+    margin-top: 3vh;
+    text-align: center;
+`
 
 const BookingsContainer = () => {
 
@@ -46,8 +52,9 @@ const BookingsContainer = () => {
     return (
 
         <>
-            <h2>This is the bookings container</h2>
-            <BookingForm addBooking = {addBooking}/>
+            <BookingFormContainer>
+                <BookingForm addBooking = {addBooking}/>
+            </BookingFormContainer>
             <BookingList bookings = {bookings} removeBooking = {removeBooking} updateCheckIn = {updateCheckIn}/> 
         </>
     )

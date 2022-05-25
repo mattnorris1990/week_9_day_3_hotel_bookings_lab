@@ -1,5 +1,16 @@
 import React, {useState} from "react"
 import {postBooking} from "../services/BookingServices"
+import styled from 'styled-components'
+
+const Form = styled.form`
+display: flex;
+flex-direction: column;
+max-width: 30%;
+margin: auto;
+gap: 2vh;
+font-family: 'Quicksand', sans-serif;
+font-weight: bold;
+`
 
 const BookingForm = ({addBooking}) => {
 
@@ -31,15 +42,16 @@ const BookingForm = ({addBooking}) => {
 
     return (
         <>
-            <form onSubmit = {onSubmit}>
-                <label htmlFor="name">Name:</label>
+            
+            <Form onSubmit = {onSubmit}>
+                <label htmlFor="name">Name</label>
                 <input type="text" id="name" onChange={onNameChange}/>
 
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">Email</label>
                 <input type="text" id="email" onChange={onEmailChange} required/>
 
                 <input type = "submit" value="Save" id="save"/>
-            </form>
+            </Form>
         </>
     )
 }
