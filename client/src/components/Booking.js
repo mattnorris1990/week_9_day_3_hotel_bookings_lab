@@ -1,7 +1,9 @@
-import React from "react"
-import { deleteBooking } from "../services/BookingServices"
+import React, {useState} from "react"
+import { deleteBooking, putBooking } from "../services/BookingServices"
 
-const Booking = ({booking, removeBooking}) => {
+const Booking = ({booking, removeBooking, updateCheckIn}) => {
+
+    const [checkedInStatus, setCheckedInStatus] = useState(booking.checkedIn)
 
     const handleClick = () => {
         deleteBooking(booking._id).then(()=>{
@@ -9,11 +11,21 @@ const Booking = ({booking, removeBooking}) => {
         })
     }
 
+    const handleChange = () => {
+        setCheckedInStatus(!checkedInStatus)
+        updateCheckIn(booking)
+        
+    }
+
     return (
         <>
             <h2>{booking.name}</h2>
             <p>{booking.email}</p>
             <button onClick={handleClick}>delete</button>
+            
+            <label htmlFor="checked">Yes</label>
+            <input type="checkbox" name="checked" checked = {checkedInStatus} onChange={handleChange}/>
+        
         </>
     )
 }

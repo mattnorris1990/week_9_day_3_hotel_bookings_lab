@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import BookingList from "../components/BookingList"
 import BookingForm from "../components/BookingForm"
-import {getBookings} from "../services/BookingServices"
+import {getBookings, putBooking} from "../services/BookingServices"
 
 const BookingsContainer = () => {
 
@@ -29,12 +29,26 @@ const BookingsContainer = () => {
         setBookings(temp)
     }
 
+
+    const updateCheckIn = (booking) => {
+        const temp = [... bookings];
+        const indexOfBookingToBeUpdated = temp.indexOf(booking)
+        
+        const bookingToBeUpdated = temp[indexOfBookingToBeUpdated]
+        
+        bookingToBeUpdated.checkedIn = !bookingToBeUpdated.checkedIn
+
+        setBookings(temp)
+
+        putBooking(temp[indexOfBookingToBeUpdated])
+    }
+
     return (
 
         <>
             <h2>This is the bookings container</h2>
             <BookingForm addBooking = {addBooking}/>
-            <BookingList bookings = {bookings} removeBooking = {removeBooking}/> 
+            <BookingList bookings = {bookings} removeBooking = {removeBooking} updateCheckIn = {updateCheckIn}/> 
         </>
     )
 }

@@ -16,6 +16,7 @@ const BookingForm = ({addBooking}) => {
 
     const onSubmit = (event) => {
         event.preventDefault()
+        
         const newBooking = {
             name: enteredName,
             email: enteredEmail,
@@ -35,7 +36,7 @@ const BookingForm = ({addBooking}) => {
                 <input type="text" id="name" onChange={onNameChange}/>
 
                 <label htmlFor="email">Email:</label>
-                <input type="text" id="email" onChange={onEmailChange}/>
+                <input type="text" id="email" onChange={onEmailChange} required/>
 
                 <input type = "submit" value="Save" id="save"/>
             </form>
